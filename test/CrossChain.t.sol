@@ -228,7 +228,7 @@ contract CrossChainTest is Test {
         vm.deal(alice, SEND_VALUE);
         vm.startPrank(alice);
         // Deposit to the vault and receive tokens
-        Vault(payable(address(vault))).deposit{value: SEND_VALUE}();
+        vault.deposit{value: SEND_VALUE}(); // deposit is already "payable", and vault is already of type "Vault"
         // bridge the tokens
         console.log("Bridging %d tokens", SEND_VALUE);
         uint256 startBalance = IERC20(address(sourceRebaseToken)).balanceOf(alice);
@@ -260,7 +260,7 @@ contract CrossChainTest is Test {
         vm.deal(alice, SEND_VALUE);
         vm.startPrank(alice);
         // Deposit to the vault and receive tokens
-        Vault(payable(address(vault))).deposit{value: SEND_VALUE}();
+        vault.deposit{value: SEND_VALUE}();
         // bridge the tokens
         console.log("Bridging %d tokens", SEND_VALUE);
         uint256 startBalance = IERC20(address(sourceRebaseToken)).balanceOf(alice);
@@ -308,7 +308,7 @@ contract CrossChainTest is Test {
         vm.deal(alice, SEND_VALUE);
         vm.startPrank(alice);
         // Deposit to the vault and receive tokens
-        Vault(payable(address(vault))).deposit{value: SEND_VALUE}();
+        vault.deposit{value: SEND_VALUE}();
         uint256 startBalance = IERC20(address(sourceRebaseToken)).balanceOf(alice);
         assertEq(startBalance, SEND_VALUE);
         vm.stopPrank();
